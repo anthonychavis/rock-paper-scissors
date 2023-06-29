@@ -6,9 +6,10 @@ let selection,
     playAgainPrompt,
     mortalScore = (botScore = 0);
 const playErrorMssg = `Invalid response, human. Type either Y for yes, or N for no. I recommend you avoid humiliation & type N. `;
-const endMessage = `
+const endMessage1 = `
 Thanks, for the mild entertainment, mortal. Pfff
 `;
+const selectMssg = `Make your selection.`;
 const selectionArr = ['rock', 'paper', 'scissors'];
 const botBanter = [
     'OMG! How did you earn entrance into my Arena, mortal?',
@@ -34,7 +35,7 @@ function arenaFxn() {
     let arenaEnterResponse = arenaEnter.trim().toUpperCase();
     if (arenaEnterResponse === 'Y') {
         console.log(`
-        Your fate is sealed. Make your selection.`);
+        Your fate is sealed. ${selectMssg}`);
         selectionPrompt();
     } else if (arenaEnterResponse === 'N') {
         console.log(`
@@ -144,10 +145,14 @@ function playAgainFxn() {
         if (playAgainResponse == 'Y') {
             // if y, then
             // prompt selection fxn again
-            console.log('!!!!!!!!', 'hey');
+            // trash talk for this?
+            console.log(`
+            ${selectMssg}`);
+            selectionPrompt();
+            oneTwoThreeShoot();
         } else if (playAgainResponse == 'N') {
             // if n, then
-            console.log(endMessage);
+            console.log(endMessage1);
         } else {
             playAgainPrompt = prompt(`
             ${playErrorMssg}
@@ -206,6 +211,13 @@ if (selection) {
 / TICKET WORK
 /
 */
-// !! reset scores at game end !!
+// MUST FOR ASSIGNMENT
+//      // when user chooses to end the game, show final score
 // the prompts print per key typed. fix.
 // check the "see color" issue
+// add trash talk for choosing to play again
+// add fxnality for streaks
+//      // such as different trash talking
+//              // esp for comebacks
+
+// !! reset scores at game end !! - auto resets b/c no more prompts & to get prompts, have to call file in cli again
