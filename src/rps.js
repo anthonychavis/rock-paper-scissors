@@ -3,6 +3,7 @@ const prompt = require('prompt-sync')({ sigint: true });
 
 let selection,
     botSelection,
+    playAgainPrompt,
     mortalScore = (botScore = 0);
 const playErrorMssg = `Invalid response, human. Type either Y for yes, or N for no. I recommend you avoid humiliation & type N. `;
 const endMessage = `
@@ -31,17 +32,7 @@ const soreLoserBanter = [
 */
 function arenaFxn() {
     let arenaEnterResponse = arenaEnter.trim().toUpperCase();
-
     if (arenaEnterResponse === 'Y') {
-        //     selection = prompt(`
-        // Your fate is sealed. Make your selection.
-        // Rock (1)
-        // Paper (2)
-        // Scissors (3)
-        // `);
-        //     const randSelectionNum = randNum(selectionArr);
-        //     botSelection = selectionArr[randSelectionNum];
-
         console.log(`
         Your fate is sealed. Make your selection.`);
         selectionPrompt();
@@ -60,6 +51,7 @@ function arenaFxn() {
             arenaFxn();
         }
     }
+    return;
 }
 //
 function selectionPrompt() {
@@ -70,6 +62,7 @@ function selectionPrompt() {
     `);
     const randSelectionNum = randNum(selectionArr);
     botSelection = selectionArr[randSelectionNum];
+    return;
 }
 //
 function randNum(arr) {
@@ -126,33 +119,14 @@ function oneTwoThreeShoot() {
             }
         }
         console.log(`
-        You chose ${selection} & I chose ${botSelection}. This round ${victor} win. 
+        You chose ${selection} & I chose ${botSelection}. This round ${victor} won. 
         SCORES:
         Mortal: ${mortalScore}
         Superior Being: ${botScore}
         `);
-        const playAgain = prompt(`Would you like to play again? (Y/N)`);
-        const playAgainResponse = playAgain.trim().toUpperCase();
 
-        if (playAgainResponse.length === 1) {
-            if (playAgainResponse == 'Y') {
-                // if y, then
-                // prompt selection fxn again
-            } else if (playAgainResponse == 'N') {
-                // if n, then
-                console.log(endMessage);
-            } else {
-                // errormessge
-                // re-prompt
-            }
-        } else {
-            // indicate error
-            // indicate how to fix error
-            prompt(`
-            ${playErrorMssg}
-            `);
-            // prompt  playAgain again
-        }
+        playAgainPrompt = prompt(`Would you like to play again? (Y/N)`);
+        playAgainFxn();
     } else {
         console.error(
             `
@@ -161,6 +135,36 @@ function oneTwoThreeShoot() {
         selectionPrompt();
         oneTwoThreeShoot();
     }
+    return;
+}
+//
+function playAgainFxn() {
+    const playAgainResponse = playAgainPrompt.trim().toUpperCase();
+    if (playAgainResponse.length === 1) {
+        if (playAgainResponse == 'Y') {
+            // if y, then
+            // prompt selection fxn again
+            console.log('!!!!!!!!', 'hey');
+        } else if (playAgainResponse == 'N') {
+            // if n, then
+            console.log(endMessage);
+        } else {
+            playAgainPrompt = prompt(`
+            ${playErrorMssg}
+            `); // what is wrong here? see color
+            if (playAgainPrompt) {
+                playAgainFxn();
+            }
+        }
+    } else {
+        playAgainPrompt = prompt(`
+        ${playErrorMssg}
+        `);
+        if (playAgainPrompt) {
+            playAgainFxn();
+        }
+    }
+    return;
 }
 
 /*
@@ -197,4 +201,11 @@ if (selection) {
 // console.log(selection);
 // console.log(botSelection);
 
+/*
+/
+/ TICKET WORK
+/
+*/
 // !! reset scores at game end !!
+// the prompts print per key typed. fix.
+// check the "see color" issue
