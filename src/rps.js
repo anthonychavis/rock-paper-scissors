@@ -24,6 +24,7 @@ const botBanter = [
 const soreLoserBanter = [
     `You were allowed to win.`,
     `Luck, is this how you complete your days?`,
+    `Lucky ducky...`,
 ];
 
 /*
@@ -124,6 +125,14 @@ function oneTwoThreeShoot() {
         SCORES:
         Mortal: ${mortalScore}
         Superior Being: ${botScore}
+
+       ${
+           victor === 'I'
+               ? botBanter[randNum(botBanter)]
+               : victor === 'you'
+               ? soreLoserBanter[randNum(soreLoserBanter)]
+               : 'Eh, whatever'
+       }
         `);
 
         playAgainPrompt = prompt(`Would you like to play again? (Y/N)`);
@@ -143,16 +152,27 @@ function playAgainFxn() {
     const playAgainResponse = playAgainPrompt.trim().toUpperCase();
     if (playAgainResponse.length === 1) {
         if (playAgainResponse == 'Y') {
-            // if y, then
-            // prompt selection fxn again
             // trash talk for this?
             console.log(`
             ${selectMssg}`);
             selectionPrompt();
             oneTwoThreeShoot();
         } else if (playAgainResponse == 'N') {
-            // if n, then
-            console.log(endMessage1);
+            console.log(
+                endMessage1,
+                `${
+                    mortalScore > botScore
+                        ? '...Was just about to winstreak you into the dirt'
+                        : `...Thank Bytes that's over`
+                }`,
+                `
+                SCORES:
+                Mortal: ${mortalScore}
+                Superior Being: ${botScore}
+                `
+            );
+            // add trash talk for victory
+            // add trash talk for sore loser
         } else {
             playAgainPrompt = prompt(`
             ${playErrorMssg}
