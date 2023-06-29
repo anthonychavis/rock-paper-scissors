@@ -99,8 +99,6 @@ if (arenaEnter) {
     arenaFxn();
 }
 
-// console.log(selection);
-
 if (selection) {
     oneTwoThreeShoot();
 }
