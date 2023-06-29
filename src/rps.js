@@ -198,18 +198,33 @@ function playAgainFxn() {
 /
 */
 let arenaEnter = prompt(
+    // `
+    // 😈 Welcome Challenger! You have entered the Rock-Paper-Scissors Battle Arena! 😈
+
+    // Rock Paper Scissors is a two-player game where each player chooses one of three symbols: Rock 🪨 (1), Paper 📃 (2), or Scissors ✂️ (3). In this case, your opponent is a Superior Being 🤖, but my friends call me Bot. (You are foe, not friend, btw).
+
+    // To select your choice, type 1 for Rock 🪨, 2 for Paper 📃, or 3 for Scissors ✂️.
+    // Press Enter after typing your response to the prompts.
+    // My 🤖 choice is randomly generated, so they think 👀.
+
+    // Rock will defeat Scissors - 🪨>✂️.
+    // Paper will defeat Rock - 📃>🪨.
+    // Scissors will defeat Paper - ✂️>📃.
+
+    // Human, are you ready? (Y/N)
+    // `
     `
-    😈 Welcome Challenger! You have entered the Rock-Paper-Scissors Battle Arena! 😈
+     Welcome Challenger! You have entered the Rock-Paper-Scissors Battle Arena! 
     
-    Rock Paper Scissors is a two-player game where each player chooses one of three symbols: Rock 🪨 (1), Paper 📃 (2), or Scissors ✂️ (3). In this case, your opponent is a Superior Being 🤖, but my friends call me Bot. (You are foe, not friend, btw).
+    Rock Paper Scissors is a two-player game where each player chooses one of three symbols: Rock (1), Paper (2), or Scissors (3). In this case, your opponent is a Superior Being, but my friends call me Bot. (You are foe, not friend, btw).
     
-    To select your choice, type 1 for Rock 🪨, 2 for Paper 📃, or 3 for Scissors ✂️.
+    To select your choice, type 1 for Rock  2 for Paper, or 3 for Scissors.
     Press Enter after typing your response to the prompts.
-    My 🤖 choice is randomly generated, so they think 👀. 
+    My choice is randomly generated, so they think. 
     
-    Rock will defeat Scissors - 🪨>✂️.
-    Paper will defeat Rock - 📃>🪨.
-    Scissors will defeat Paper - ✂️>📃.
+    Rock will defeat Scissors - Rock > Scissors.
+    Paper will defeat Rock - Paper > Rock.
+    Scissors will defeat Paper - Scissors > Paper.
     
     Human, are you ready? (Y/N)
     `
