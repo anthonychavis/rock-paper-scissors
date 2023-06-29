@@ -4,7 +4,10 @@ const prompt = require('prompt-sync')({ sigint: true });
 let selection,
     botSelection,
     mortalScore = (botScore = 0);
-const endMessage = `Thanks, for the mild entertainment, mortal. Pfff`;
+const playErrorMssg = `Invalid response, human. Type either Y for yes, or N for no. I recommend you avoid humiliation & type N. `;
+const endMessage = `
+Thanks, for the mild entertainment, mortal. Pfff
+`;
 const selectionArr = ['rock', 'paper', 'scissors'];
 const botBanter = [
     'OMG! How did you earn entrance into my Arena, mortal?',
@@ -50,7 +53,7 @@ function arenaFxn() {
     } else {
         arenaEnter = prompt(
             `
-        Invalid response, human. Type either Y for yes, or N for no. I recommend you avoid humiliation & type N. 
+       ${playErrorMssg}
         `
         );
         if (arenaEnter) {
@@ -128,7 +131,28 @@ function oneTwoThreeShoot() {
         Mortal: ${mortalScore}
         Superior Being: ${botScore}
         `);
-        // const playAgain = prompt(`Would you like to play again? (Y/N)`)
+        const playAgain = prompt(`Would you like to play again? (Y/N)`);
+        const playAgainResponse = playAgain.trim().toUpperCase();
+
+        if (playAgainResponse.length === 1) {
+            if (playAgainResponse == 'Y') {
+                // if y, then
+                // prompt selection fxn again
+            } else if (playAgainResponse == 'N') {
+                // if n, then
+                console.log(endMessage);
+            } else {
+                // errormessge
+                // re-prompt
+            }
+        } else {
+            // indicate error
+            // indicate how to fix error
+            prompt(`
+            ${playErrorMssg}
+            `);
+            // prompt  playAgain again
+        }
     } else {
         console.error(
             `
@@ -141,16 +165,18 @@ function oneTwoThreeShoot() {
 
 /*
 /
-/  PROMPTS
+/  PROMPTS ?? 
 /
 */
 let arenaEnter = prompt(
     `
     😈 Welcome Challenger! You have entered the Rock-Paper-Scissors Battle Arena! 😈
     
-    Rock Paper Scissors is a two-player game where each player chooses one of three symbols: Rock 🪨 (1), Paper 📃 (2), or Scissors ✂️ (3). In this case, your opponent is a "bot" 🤖, or a programmed player. 
+    Rock Paper Scissors is a two-player game where each player chooses one of three symbols: Rock 🪨 (1), Paper 📃 (2), or Scissors ✂️ (3). In this case, your opponent is a Superior Being 🤖, but my friends call me Bot. (You are foe, not friend, btw).
     
-    To select your choice, type 1 for Rock 🪨, 2 for Paper 📃, or 3 for Scissors ✂️. Then press Enter. The bot's 🤖 choice is random, we think 👀. 
+    To select your choice, type 1 for Rock 🪨, 2 for Paper 📃, or 3 for Scissors ✂️.
+    Press Enter after typing your response to the prompts.
+    My 🤖 choice is randomly generated, so they think 👀. 
     
     Rock will defeat Scissors - 🪨>✂️.
     Paper will defeat Rock - 📃>🪨.
@@ -167,7 +193,8 @@ if (arenaEnter) {
 if (selection) {
     oneTwoThreeShoot();
 }
-console.log(selection);
-console.log(botSelection);
 
-// reset scores at game end !!
+// console.log(selection);
+// console.log(botSelection);
+
+// !! reset scores at game end !!
