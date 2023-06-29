@@ -1,7 +1,9 @@
 // create prompting fxn & allow users to exit the program
 const prompt = require('prompt-sync')({ sigint: true });
 
-let selection, botSelection;
+let selection,
+    botSelection,
+    mortalScore = (botScore = 0);
 const endMessage = `Thanks, for the mild entertainment, mortal. Pfff`;
 const selectionArr = ['rock', 'paper', 'scissors'];
 const botBanter = [
@@ -56,6 +58,7 @@ function arenaFxn() {
         }
     }
 }
+//
 function selectionPrompt() {
     selection = prompt(`
     Rock (1)
@@ -65,20 +68,72 @@ function selectionPrompt() {
     const randSelectionNum = randNum(selectionArr);
     botSelection = selectionArr[randSelectionNum];
 }
+//
 function randNum(arr) {
     return Math.floor(Math.random() * arr.length);
 }
+//
 function trashTalk(banterArr) {
     return randNum(banterArr);
 }
+//
 function oneTwoThreeShoot() {
     if (+selection > 0 && +selection < 4) {
         selection = selectionArr[+selection - 1];
+        let victor;
+
+        if (selection == 'rock') {
+            if (botSelection == 'rock') {
+                // tie
+                victor = 'no one';
+            } else if (botSelection == 'paper') {
+                // loss
+                victor = 'I';
+                botScore++;
+            } else {
+                // win
+                victor = 'you';
+                mortalScore++;
+            }
+        } else if (selection == 'paper') {
+            if (botSelection == 'paper') {
+                // tie
+                victor = 'no one';
+            } else if (botSelection == 'scissors') {
+                // loss
+                victor = 'I';
+                botScore++;
+            } else {
+                // win
+                victor = 'you';
+                mortalScore++;
+            }
+        } else {
+            if (botSelection == 'scissors') {
+                // tie
+                victor = 'no one';
+            } else if (botSelection == 'rock') {
+                // loss
+                victor = 'I';
+                botScore++;
+            } else {
+                // win
+                victor = 'you';
+                mortalScore++;
+            }
+        }
+        console.log(`
+        You chose ${selection} & I chose ${botSelection}. This round ${victor} win. 
+        SCORES:
+        Mortal: ${mortalScore}
+        Superior Being: ${botScore}
+        `);
+        // const playAgain = prompt(`Would you like to play again? (Y/N)`)
     } else {
-        // console.error(
-        //     `
-        //     Type only the number corresponding to your flawed selection.`
-        // );
+        console.error(
+            `
+            Type only the number corresponding to your flawed selection.`
+        );
         selectionPrompt();
         oneTwoThreeShoot();
     }
@@ -114,3 +169,5 @@ if (selection) {
 }
 console.log(selection);
 console.log(botSelection);
+
+// reset scores at game end !!
