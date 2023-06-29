@@ -19,6 +19,11 @@ const soreLoserBanter = [
     `Luck, is this how you complete your days?`,
 ];
 
+/*
+/
+/ FUNCTIONS
+/
+*/
 function arenaFxn() {
     let arenaEnterResponse = arenaEnter.trim().toUpperCase();
 
@@ -79,6 +84,11 @@ function oneTwoThreeShoot() {
     }
 }
 
+/*
+/
+/  PROMPTS
+/
+*/
 let arenaEnter = prompt(
     `
     😈 Welcome Challenger! You have entered the Rock-Paper-Scissors Battle Arena! 😈
