@@ -150,41 +150,32 @@ function oneTwoThreeShoot() {
 //
 function playAgainFxn() {
     const playAgainResponse = playAgainPrompt.trim().toUpperCase();
-    if (playAgainResponse.length === 1) {
-        if (playAgainResponse == 'Y') {
-            // trash talk for this?
-            console.log(`
+    if (playAgainResponse == 'Y') {
+        // trash talk for this?
+        console.log(`
             ${selectMssg}`);
-            selectionPrompt();
-            oneTwoThreeShoot();
-        } else if (playAgainResponse == 'N') {
-            console.log(
-                endMessage1,
-                `${
-                    mortalScore > botScore
-                        ? '...Was just about to winstreak you into the dirt'
-                        : `...Thank Bytes that's over`
-                }`,
-                `
+        selectionPrompt();
+        oneTwoThreeShoot();
+    } else if (playAgainResponse == 'N') {
+        console.log(
+            endMessage1,
+            `${
+                mortalScore > botScore
+                    ? '...Was just about to winstreak you into the dirt'
+                    : `...Thank Bytes that's over`
+            }`,
+            `
                 SCORES:
                 Mortal: ${mortalScore}
                 Superior Being: ${botScore}
                 `
-            );
-            // add trash talk for victory
-            // add trash talk for sore loser
-        } else {
-            playAgainPrompt = prompt(`
-            ${playErrorMssg}
-            `); // what is wrong here? see color
-            if (playAgainPrompt) {
-                playAgainFxn();
-            }
-        }
+        );
+        // add trash talk for victory
+        // add trash talk for sore loser
     } else {
         playAgainPrompt = prompt(`
-        ${playErrorMssg}
-        `);
+            ${playErrorMssg}
+            `); // what is wrong here? see color
         if (playAgainPrompt) {
             playAgainFxn();
         }
